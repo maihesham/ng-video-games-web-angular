@@ -1,3 +1,9 @@
+in this project will list games in the home page with sort and search options 
+when click on gamme card will open details page with all details about this game like rate , name , description and some screen shot
+
+
+
+
 # NgVideoGames
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.0.
