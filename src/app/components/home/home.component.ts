@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { APIResponse, Game } from 'src/app/Moduls';
@@ -9,7 +9,8 @@ import { HttpService } from 'src/app/Services/http.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent 
+implements OnInit  , OnDestroy{
 
 
   public sort: string='';
@@ -38,6 +39,19 @@ private routeSub: Subscription | undefined;
       this.games = gameList.results;
       console.log(gameList);
     });
+  }
+  openGameDetails(id: string): void {
+    this.router.navigate(['details', id]);
+  }
+  ngOnDestroy(): void {
+    //when close page 
+    if (this.gameSub) {
+      this.gameSub.unsubscribe();
+    }
+
+    if (this.routeSub) {
+      this.routeSub.unsubscribe();
+    }
   }
 
 }
